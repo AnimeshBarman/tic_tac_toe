@@ -102,7 +102,15 @@ button:hover{
 
 } */
 
-.cell.disabled{
-    background-color: #8c8c8c;
+.game-result {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 
-}
+  .disabled {
+    pointer-events: none;
+    background-color: #eee;
+  }
+

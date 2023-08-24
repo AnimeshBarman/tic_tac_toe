@@ -4,8 +4,10 @@ const player2 = document.querySelector('.player2');
 const restartBtn = document.querySelector('button');
 
 //Making variables
-let currentPlayer = 'X';
-let otherPlayer = 'O';
+const currentPlayer = 'X';
+const otherPlayer = 'O';
+const currentPlayerName = 'Player 1';
+const otherPlayerName = 'Player 2';   
 let playerTurn = currentPlayer;
 
 player1.textContent = `Player 1: ${currentPlayer}`;
@@ -18,23 +20,20 @@ const startGame = ()=>{
     })
 }
 
-const handleClick = (e)=>{
-    if(e.target.textContent === ''){
-        e.target.textContent = playerTurn;
-        if(checkWin()){
-            console.log(`${playerTurn} is a Winner..`);
-            disableCell();
-        }
-        else if(checkDraw()){
-            console.log(`it's a tie`);
-            disableCell();
-        }
-        else{
-
-            changePlayerTurn();
-        }
+const handleClick = (e) => {
+    if (e.target.textContent === '') {
+      e.target.textContent = playerTurn;
+      const winner = checkWin();
+  
+      if (winner) {
+        disableCell(winner); // Pass the winner's name
+      } else if (checkDraw()) {
+        disableCell();
+      } else {
+        changePlayerTurn();
+      }
     }
-}
+  };
 
 //Change Player Turn function
 const changePlayerTurn = ()=>{
@@ -63,10 +62,10 @@ const checkWin = ()=>{
         if(gameCells[pos1].textContent !== '' && 
         gameCells[pos1].textContent === gameCells[pos2].textContent && 
         gameCells[pos2].textContent === gameCells[pos3].textContent){
-            return true;
+            return playerTurn === currentPlayer ? currentPlayerName : otherPlayerName;
         }
     }
-    return false;
+    return null;
 }
 
 //check for Draw
@@ -81,21 +80,38 @@ const checkDraw = ()=>{
 }
 
 //disable game Board
-const disableCell = ()=>{
-    gameCells.forEach((cell)=>{
+const disableCell = (winner) => {
+    const gameResult = document.querySelector('.game-result');
+    if (winner) {
+        gameResult.textContent = `${winner} Wins!`;
+    } else {
+        gameResult.textContent = "It's a Draw!";
+    }
+
+    // Remove click event listeners and disable the cells
+    gameCells.forEach((cell) => {
         cell.removeEventListener('click', handleClick);
         cell.classList.add('disabled');
-    })
+    });
 }
 
+
+
 //restart function
-const restartGame = ()=>{
-    gameCells.forEach((cell)=>{
+const restartGame = () => {
+    const gameResult = document.querySelector('.game-result');
+    gameResult.textContent = ''; // Clear the game result message
+
+    // Clear cell content and re-enable the cells
+    gameCells.forEach((cell) => {
         cell.textContent = '';
         cell.classList.remove('disabled');
-    })
-    startGame()
+    });
+
+    startGame();
 }
+
+
 
 //restart button
 restartBtn.addEventListener('click', restartGame)
