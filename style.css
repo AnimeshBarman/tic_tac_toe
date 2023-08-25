@@ -103,3 +103,25 @@ button:hover{
     color: #000;
   }
 
+  @media (max-width: 550px) {
+    .main>h1{
+        font-size: 25px;
+    }
+    .game-board{
+        grid-template-columns: repeat(3, minmax(70px, 1fr));
+    }
+    .cell{
+        font-size: 30px;
+        height: 70px;
+    }
+    .player{
+        font-size: 20px;
+    }
+    button{
+        font-size: 18px;
+    }
+    .game-result{
+        font-size: 18px;
+    }
+  }
+
