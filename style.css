@@ -40,6 +40,7 @@
     font-weight: 600;
     height: 100px;
     cursor: pointer;
+    color: rgb(189, 102, 3);
 }
 .cell:first-child, 
 .cell:nth-child(2), 
@@ -86,23 +87,10 @@ button:hover{
     background-color: #5a5a9b;
 }
 
-/* @media screen and (max-width: 550px) {
-    .main{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50%;
-    }
-    .main>h1{
-        margin-bottom: 30px;
-        font-size: 20px;
-        text-decoration: underline;
-    }
-    
-
-} */
 
 .game-result {
+    background-color: lightblue;
+    color: #000;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
@@ -111,6 +99,7 @@ button:hover{
 
   .disabled {
     pointer-events: none;
-    background-color: #eee;
+    background-color: #eeeeee63;
+    color: #000;
   }
 

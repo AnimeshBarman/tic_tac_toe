@@ -2,6 +2,7 @@ const gameCells = document.querySelectorAll('.cell');
 const player1 = document.querySelector('.player1'); 
 const player2 = document.querySelector('.player2');
 const restartBtn = document.querySelector('button');
+const gameResult = document.querySelector('.game-result');
 
 //Making variables
 const currentPlayer = 'X';
@@ -81,7 +82,7 @@ const checkDraw = ()=>{
 
 //disable game Board
 const disableCell = (winner) => {
-    const gameResult = document.querySelector('.game-result');
+    
     if (winner) {
         gameResult.textContent = `${winner} Wins!`;
     } else {
@@ -99,7 +100,7 @@ const disableCell = (winner) => {
 
 //restart function
 const restartGame = () => {
-    const gameResult = document.querySelector('.game-result');
+    
     gameResult.textContent = ''; // Clear the game result message
 
     // Clear cell content and re-enable the cells
